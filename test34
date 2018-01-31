@@ -1,0 +1,27 @@
+#!/bin/bash
+rm -r .gittlet/
+rm *.txt
+make
+echo "g.txt in master" >> g.txt
+echo "blah blah" >> f.txt
+java gitlet.Main add g.txt
+java gitlet.Main add f.txt
+java gitlet.Main commit "Two files"
+java gitlet.Main branch other
+echo "h.txt in master" >> h.txt
+java gitlet.Main add h.txt
+java gitlet.Main rm g.txt
+echo "oo la la" >> f.txt
+java gitlet.Main add f.txt
+java gitlet.Main commit "Add h.txt, remove g.txt, and change f.txt"
+java gitlet.Main checkout other
+echo "hee haa" >> f.txt
+java gitlet.Main add f.txt
+echo "k,txt in master" >> k.txt
+java gitlet.Main add k.txt
+java gitlet.Main commit "Add k.txt and modify f.txt"
+java gitlet.Main checkout master
+java gitlet.Main log
+java gitlet.Main merge other
+java gitlet.Main log
+java gitlet.Main status
